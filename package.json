@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "test": "node --test",
-    "lint": "node --check bin/codex-usage.js && node --check src/*.js && node --check test/*.test.js && node scripts/format-check.js",
+    "lint": "node --check bin/codex-usage.js && node --check src/cli.js && node --check src/render.js && node --check src/sessions.js && node --check test/cli.test.js && node --check test/render.test.js && node --check test/sessions.test.js && node scripts/format-check.js",
     "format:check": "node scripts/format-check.js"
   },
   "keywords": [
