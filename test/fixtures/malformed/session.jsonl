@@ -1,0 +1,2 @@
+{"timestamp":"2026-05-09T10:00:00.000Z","payload":{"rate_limits":{"primary":{"used_percent":1
+{"timestamp":"2026-05-09T10:01:00.000Z","payload":{"rate_limits":{"primary":{"used_percent":2,"window_minutes":300,"resets_at":1778345068},"secondary":{"used_percent":3,"window_minutes":10080,"resets_at":1778913211},"plan_type":"team"}}}

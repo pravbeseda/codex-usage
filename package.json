@@ -1,0 +1,40 @@
+{
+  "name": "@pravbeseda/codex-usage",
+  "version": "0.1.0",
+  "description": "CLI for showing local Codex rate-limit usage from session logs.",
+  "type": "module",
+  "bin": {
+    "codex-usage": "bin/codex-usage.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "lint": "node --check bin/codex-usage.js && node --check src/*.js && node --check test/*.test.js && node scripts/format-check.js",
+    "format:check": "node scripts/format-check.js"
+  },
+  "keywords": [
+    "codex",
+    "openai",
+    "cli",
+    "usage",
+    "rate-limit"
+  ],
+  "author": "Alexander Ivanov <pravbeseda@yandex.ru>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/pravbeseda/codex-usage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pravbeseda/codex-usage/issues"
+  },
+  "homepage": "https://github.com/pravbeseda/codex-usage#readme",
+  "engines": {
+    "node": ">=18"
+  }
+}
