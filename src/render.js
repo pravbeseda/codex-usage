@@ -42,7 +42,7 @@ export function renderLimit(label, value, options = {}) {
   }
 
   const percent = formatPercent(value.usedPercent).padStart(6);
-  const reset = value.resetsAt ? formatDateTime(new Date(value.resetsAt * 1000).toISOString()) : 'unknown';
+  const reset = value.resetsAt ? formatDateTime(new Date(value.resetsAt * 1000)) : 'unknown';
   return `${label.padEnd(8)} ${percent}  ${renderBar(value.usedPercent, { ascii: options.ascii })}  reset: ${reset}`;
 }
 

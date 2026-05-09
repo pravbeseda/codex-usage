@@ -2,7 +2,7 @@ import process from 'node:process';
 import { readFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { clearInterval, setInterval, setTimeout } from 'node:timers';
+import { clearInterval, setInterval } from 'node:timers';
 
 import { createUsageSnapshot, findLatestSessionFile, readLatestRateLimitEvent } from './sessions.js';
 import { renderJson, renderText } from './render.js';
@@ -88,23 +88,10 @@ async function printOnce(options, io) {
 }
 
 async function runLive(options, io) {
-  let stopped = false;
   let timer;
 
-  const stop = () => {
-    stopped = true;
-    if (timer) {
-      clearInterval(timer);
-    }
-    io.stdout.write('\n');
-  };
-
   const tick = async () => {
-    if (stopped) {
-      return;
-    }
-
-    io.stdout.write('\x1Bc');
+    io.stdout.write('\x1B[2J\x1B[H');
 
     try {
       const snapshot = await readUsageSnapshot(options.sessionsDir);
@@ -114,21 +101,15 @@ async function runLive(options, io) {
     }
   };
 
-  io.once('SIGINT', stop);
   await tick();
   timer = setInterval(tick, options.intervalSeconds * 1000);
 
-  await new Promise((resolvePromise) => {
-    const wait = () => {
-      if (stopped) {
-        resolvePromise();
-        return;
-      }
-
-      setTimeout(wait, 50).unref?.();
-    };
-
-    wait();
+  await new Promise((resolve) => {
+    io.once('SIGINT', () => {
+      clearInterval(timer);
+      io.stdout.write('\n');
+      resolve();
+    });
   });
 }
 

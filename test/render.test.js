@@ -34,6 +34,8 @@ test('renderText includes usage sections', () => {
 
   assert.match(output, /Codex usage \(plus\)/);
   assert.match(output, /5 hours/);
+  assert.match(output, /reset:/);
   assert.match(output, /tokens/);
+  assert.match(output, /updated/);
   assert.match(output, /source   \/tmp\/session\.jsonl/);
 });
